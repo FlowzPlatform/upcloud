@@ -44,7 +44,7 @@ app.get('/getServerListing', function(req,response) {
   //       // console.log(serverArray.servers.server);
   //       serverArray.servers.server.forEach(server => {
   //          getServerDetail('00b9cea0-fc7c-4143-8047-58c0303cad71')
-  //       });
+  //       });getServers
   //       response.send(body.toString())
   //     });
   //   });
