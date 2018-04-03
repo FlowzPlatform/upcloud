@@ -177,6 +177,63 @@ app.get('/getIpAddress', function(req,response) {
     req.end();
 })
 
+app.get('/getZone', function(req,response) {
+  var options = {
+    "method": "GET",
+    "hostname": "api.upcloud.com",
+    "port": null,
+    "path": "/1.2/zone",
+    "headers": {
+      "authorization": base_auth,
+      "accept": "application/json",
+      "cache-control": "no-cache",
+    }
+  };
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+        response.send(body.toString())
+      });
+    });
+
+    req.end();
+})
+app.get('/getPlan', function(req,response) {
+  var options = {
+    "method": "GET",
+    "hostname": "api.upcloud.com",
+    "port": null,
+    "path": "/1.2/plan",
+    "headers": {
+      "authorization": base_auth,
+      "accept": "application/json",
+      "cache-control": "no-cache",
+    }
+  };
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+        response.send(body.toString())
+      });
+    });
+
+    req.end();
+})
+
 //172.16.230.127
 app.listen(9090, 'localhost', function (err) {
   if (err) {

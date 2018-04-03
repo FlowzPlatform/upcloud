@@ -25,7 +25,7 @@
         <Row class="expand-row">
             <Col span="8">
                 <span class="expand-key title">Disk image: </span>
-                <span class="expand-value">{{ row.disk_image }}</span>
+                <span class="">{{ row.disk_image }}</span>
             </Col>
             <Col span="8">
                 <span class="expand-key title">UUID: </span>
@@ -39,7 +39,7 @@
         <Row style="margin-top:20px">
             <Col span="8">
                 <span class="expand-key title">Disk space: </span>
-                <span class="expand-value">{{ row.storage_device }} GB</span>
+                <span class="">{{ row.storage_device }} GB</span>
             </Col>
             <Col span="8">
                 <span class="expand-key title">RAM: </span>

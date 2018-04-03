@@ -1,14 +1,22 @@
 import Cookies from 'js-cookie';
 import axios from 'axios'
 import _ from 'lodash'; 
-const user = {
+const server = {
     state: {
         data: [],
-        servers: []
+        servers: [],
+        mZones:[],
+        mPlans:[]
     },
     mutations: {
         RECEIVE_SERVERS(state,  data ) {
             state.servers = data
+        },
+        RECEIVE_ZONE(state,  data ) {
+            state.mZones = data
+        },
+        RECEIVE_PLAN(state, data){
+            state.mPlans =  data
         }
     },
     actions: {
@@ -26,6 +34,32 @@ const user = {
                 });
 
            
+        },
+        async FETCH_ZONE({ commit }) {
+            const URL = 'http://localhost:9090/getZone'
+            axios(URL, {
+                method: 'get',
+                 })
+                .then(function (response) {
+                    console.log("Zones:",response.data);
+                    commit('RECEIVE_ZONE', response.data)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        async FETCH_PLAN({ commit }) {
+            const URL = 'http://localhost:9090/getPlan'
+            axios(URL, {
+                method: 'get',
+                 })
+                .then(function (response) {
+                    console.log("plans:",response.data);
+                    commit('RECEIVE_PLAN', response.data)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     },
 
@@ -63,10 +97,23 @@ const user = {
                     disk_image:'-'
                 }
             })
-        }
-       
+        },
+        zoneList: state => {
+            if(!state.mZones)
+                return []
+
+            let list=state.mZones.zones
+            return list ? list.zone : []
+        },
+        planList: state => {
+            if(!state.mPlans)
+                return []
+
+            let list=state.mPlans.plans
+            return list ? list.plan : []
+        },
     }
 
 };
 
-export default user;
+export default server;
