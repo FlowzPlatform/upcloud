@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import axios from 'axios'
 import _ from 'lodash'; 
 const user = {

@@ -40,7 +40,7 @@ export const page500 = {
 export const preview = {
     path: '/preview',
     name: 'preview',
-    component: () => import('@/views/form/article-publish/preview.vue')
+    component: () => import('@/views/disks/my-disk-resources/preview.vue')
 };
 
 export const locking = {
@@ -181,12 +181,13 @@ export const appRouter = [
         path: '/form',
         icon: 'android-checkbox',
         name: 'form',
-        title: 'Form editing',
+        title: 'Disks',
         component: Main,
         children: [
-            { path: 'artical-publish', title: '文章发布', name: 'artical-publish', icon: 'compose', component: () => import('@/views/form/article-publish/article-publish.vue') },
-            { path: 'workflow', title: '工作流', name: 'workflow', icon: 'arrow-swap', component: () => import('@/views/form/work-flow/work-flow.vue') }
-
+            { path: 'my-disk-resources', title: 'My disk resources', name: 'my-disk-resources', icon: 'compose', component: () => import('@/views/disks/my-disk-resources/my-disk-resources.vue') },
+            { path: 'workflow', title: 'Backups', name: 'workflow', icon: 'arrow-swap', component: () => import('@/views/disks/work-flow/work-flow.vue') },
+            // { path: 'workflow', title: 'My templates', name: 'workflow'},
+            // { path: 'workflow', title: 'Public templates', name: 'workflow'}
         ]
     },
     // {

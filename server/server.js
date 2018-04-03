@@ -15,41 +15,42 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-
 // use it before all route definitions
 app.use(cors({origin: 'http://localhost:8080'}));
 
+//get details of storage
+app.get('/getStorageListing', function(req, response) {
+  var options = {
+    "method": "GET",
+    "hostname": "api.upcloud.com",
+    "port": null,
+    "path": "/1.2/storage",
+    "headers": {
+      "authorization": base_auth,
+      "accept": "application/json",
+      "cache-control": "no-cache",
+    }
+  };
+  var req = http.request(options, function (res) {
+    var chunks = [];
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    res.on("end", function () {
+      var body = Buffer.concat(chunks);
+      let arrStorage =  JSON.parse(body.toString())
+      console.log('server array:', arrStorage)
+      //callback(serverArray.servers.server)
+    });
+  });
+
+  req.end();
+})
+
+//get details of server
 app.get('/getServerListing', function(req,response) {
-  // var options = {
-  //   "method": "GET",
-  //   "hostname": "api.upcloud.com",
-  //   "port": null,
-  //   "path": "/1.2/server",
-  //   "headers": {
-  //     "authorization": base_auth,
-  //     "accept": "application/json",
-  //     "cache-control": "no-cache",
-  //   }
-  // };
-  //   var req = http.request(options, function (res) {
-  //     var chunks = [];
-
-  //     res.on("data", function (chunk) {
-  //       chunks.push(chunk);
-  //     });
-
-  //     res.on("end", function () {
-  //       var body = Buffer.concat(chunks);
-  //       let serverArray =  JSON.parse(body.toString())
-  //       // console.log(serverArray.servers.server);
-  //       serverArray.servers.server.forEach(server => {
-  //          getServerDetail('00b9cea0-fc7c-4143-8047-58c0303cad71')
-  //       });getServers
-  //       response.send(body.toString())
-  //     });
-  //   });
-
-  //   req.end();
     getServers(function callback(data){
         // console.log("data:",data)
         let serverArray = []

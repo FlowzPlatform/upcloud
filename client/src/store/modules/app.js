@@ -31,7 +31,7 @@ const app = {
         ],
         tagsList: [...otherRouter.children],
         messageCount: 0,
-        dontCache: ['text-editor', 'artical-publish'] // Define here the value of the name attribute of the page you don't want to cache (see the router configuration.router.js)
+        dontCache: ['text-editor', 'my-disk-resources'] // Define here the value of the name attribute of the page you don't want to cache (see the router configuration.router.js)
     },
     mutations: {
         setTagsList (state, list) {
